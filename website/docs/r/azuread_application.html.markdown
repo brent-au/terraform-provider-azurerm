@@ -48,7 +48,16 @@ The following arguments are supported:
 
 The following attributes are exported:
 
-* `application_id` - The Application ID.
+* `application_id` - The ID of the Azure Active Directory Application.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
+
+* `create` - (Defaults to 30 minutes) Used when creating the Azure Active Directory Application.
+* `update` - (Defaults to 30 minutes) Used when updating the Azure Active Directory Application.
+* `read` - (Defaults to 5 minutes) Used when retrieving the Azure Active Directory Application.
+* `delete` - (Defaults to 30 minutes) Used when deleting the Azure Active Directory Application.
 
 ## Import
 

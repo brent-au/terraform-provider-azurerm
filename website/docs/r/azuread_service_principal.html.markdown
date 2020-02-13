@@ -28,7 +28,7 @@ resource "azurerm_azuread_application" "example" {
 }
 
 resource "azurerm_azuread_service_principal" "example" {
-  application_id = "${azurerm_azuread_application.example.application_id}"
+  application_id = azurerm_azuread_application.example.application_id
 }
 ```
 
@@ -42,9 +42,18 @@ The following arguments are supported:
 
 The following attributes are exported:
 
-* `id` - The Object ID for the Service Principal.
+* `id` - The Object ID for the Azure Active Directory Service Principal.
 
 * `display_name` - The Display Name of the Azure Active Directory Application associated with this Service Principal.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration/resources.html#timeouts) for certain actions:
+
+* `create` - (Defaults to 30 minutes) Used when creating the Azure Active Directory Service Principal.
+* `update` - (Defaults to 30 minutes) Used when updating the Azure Active Directory Service Principal.
+* `read` - (Defaults to 5 minutes) Used when retrieving the Azure Active Directory Service Principal.
+* `delete` - (Defaults to 30 minutes) Used when deleting the Azure Active Directory Service Principal.
 
 ## Import
 

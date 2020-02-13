@@ -392,7 +392,7 @@ func resourceArmIotHub() *schema.Resource {
 						"name": {
 							Type:         schema.TypeString,
 							Required:     true,
-							ValidateFunc: validate.NoEmptyStrings,
+							ValidateFunc: validation.StringIsNotEmpty,
 						},
 						"ip_mask": {
 							Type:         schema.TypeString,
@@ -682,12 +682,7 @@ func waitForIotHubToBeDeleted(ctx context.Context, client *devices.IotHubResourc
 		Pending: []string{"200"},
 		Target:  []string{"404"},
 		Refresh: iothubStateStatusCodeRefreshFunc(ctx, client, resourceGroup, name),
-	}
-
-	if features.SupportsCustomTimeouts() {
-		stateConf.Timeout = d.Timeout(schema.TimeoutDelete)
-	} else {
-		stateConf.Timeout = 40 * time.Minute
+		Timeout: d.Timeout(schema.TimeoutDelete),
 	}
 
 	if _, err := stateConf.WaitForState(); err != nil {
